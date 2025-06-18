@@ -5,33 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Formulir Pengisian</title>
   <style>
+    :root {
+      --primary-color: #1a73e8;
+      --primary-dark: #0d47a1;
+      --primary-light: #63a4ff;
+      --secondary-color: #f5f5f5;
+      --text-dark: #333;
+      --text-light: #fff;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
     body {
-      font-family: Arial, sans-serif;
-      max-width: 600px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 650px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 30px;
       background-image: url('../jokiazy-mlbb-main/img/WhatsApp\ Image\ 2021-12-19\ at\ 10.38.48\ PM.jpeg');
-      background-size: 100%;
+      background-size: 50%;
       background-position: center;
-      color: #ffffff;
+      color: var(--text-light);
+      line-height: 1.6;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    .form-container {
+      background-color: rgba(7, 7, 7, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     h2 {
       text-align: center;
-      color: #ffffff;
-      text-shadow: 1px 1px 4px #000;
+      color: var(--text-light);
+      margin-bottom: 25px;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
     label {
       display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-      color: #ffffff;
-      text-shadow: 1px 1px 3px #000;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-light);
+      font-size: 15px;
     }
 
     input[type="text"],
@@ -39,128 +64,183 @@
     input[type="number"],
     select {
       width: 100%;
-      padding: 8px;
-      border: none;
-      border-radius: 4px;
+      padding: 12px 15px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
       box-sizing: border-box;
-      background-color: rgba(0, 0, 0, 0.5);
-      color: #ffffff;
+      background-color: rgba(0, 0, 0, 0.2);
+      color: var(--text-light);
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="number"]:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+      background-color: rgba(0, 0, 0, 0.3);
     }
 
     select {
       height: auto;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 15px center;
+      background-size: 15px;
     }
 
     button {
-      background-color: #8800cc;
+      background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
       color: white;
-      padding: 10px 15px;
+      padding: 12px 25px;
       border: none;
-      border-radius: 4px;
+      border-radius: 8px;
       cursor: pointer;
       font-size: 16px;
-      box-shadow: 0 0 10px #8800cc;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 120px;
     }
 
     button:hover {
-      background-color: #aa00ee;
+      background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
     }
 
     .hidden {
       display: none;
     }
+
+    /* Animasi untuk transisi */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-group {
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      body {
+        padding: 15px;
+      }
+      
+      .form-container {
+        padding: 20px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h2>Formulir Pengisian</h2>
-  <form id="myForm" action="simpan_data.php" method="POST">
-    <div class="form-group">
-      <label for="nama">Nama:</label>
-      <input type="text" id="nama" name="nama" required>
-    </div>
-
-    <div class="form-group">
-      <label for="id_mole">ID MoLe:</label>
-      <input type="text" id="id_mole" name="id_mole" required>
-    </div>
-
-    <div class="form-group">
-      <label for="nama_mole">Nama MoLe:</label>
-      <input type="text" id="nama_mole" name="nama_mole" required>
-    </div>
-
-    <!-- Pilihan metode pembelian -->
-    <div class="form-group">
-      <label for="jenis_pembelian">Pilih Jenis Pembelian:</label>
-      <select id="jenis_pembelian" name="jenis_pembelian" required>
-        <option value="">-- Pilih --</option>
-        <option value="paket">Paket</option>
-        <option value="per_star">Per Star</option>
-      </select>
-    </div>
-
-    <!-- Pilihan Paket -->
-    <div id="paketSection" class="form-group hidden">
-      <label for="paket">Paket:</label>
-        <select id="paket" name="paket" size="1">
-        <option value="">-- Pilih Paket --</option>
-        <option value="1">Classic</option>
-            <option value="2">Mythtic Grading</option>
-            <option value="3">MRO</option>
-            <option value="4">Master </option>
-            <option value="5">Grandmaster</option>
-            <option value="6">Epic</option>
-            <option value="7">Legend</option>
-            <option value="8">Mythic Biasa</option>
-            <option value="9">Mythic Honor</option>
-            <option value="10">Mythic Glory</option>
-            <option value="11">Mythic Immortal</option>
-        </select>
-    </div>
-
-    <div id="perStarSection" class="hidden">
+  <div class="form-container">
+    <h2>Formulir Pengisian</h2>
+    <form id="myForm" action="simpan_data.php" method="POST">
       <div class="form-group">
-        <label for="rank">Rank:</label>
-        <select id="rank" name="rank">
-          <option value="">-- Pilih Rank --</option>
-          <option value="master">Master</option>
-          <option value="grandmaster">Grandmaster</option>
-          <option value="epic">Epic</option>
-          <option value="legend">Legend</option>
-          <option value="mythic">Mythic</option>
-          <option value="mythic_honor">Mythic Honor</option>
-          <option value="glory">Glory</option>
-          <option value="immortal">Immortal</option>
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama" required placeholder="Masukkan nama lengkap">
+      </div>
+
+      <div class="form-group">
+        <label for="id_mole">ID MoLe:</label>
+        <input type="text" id="id_mole" name="id_mole" required placeholder="Masukkan ID Mobile Legends">
+      </div>
+
+      <div class="form-group">
+        <label for="nama_mole">Nama MoLe:</label>
+        <input type="text" id="nama_mole" name="nama_mole" required placeholder="Masukkan nama in-game">
+      </div>
+
+      <!-- Pilihan metode pembelian -->
+      <div class="form-group">
+        <label for="jenis_pembelian">Pilih Jenis Pembelian:</label>
+        <select id="jenis_pembelian" name="jenis_pembelian" required>
+          <option value="">-- Pilih Jenis Pembelian --</option>
+          <option value="paket">Paket</option>
+          <option value="per_star">Per Star</option>
         </select>
       </div>
-      <div class="form-group">
-        <label for="jumlah_bintang">Jumlah Bintang:</label>
-        <input type="number" id="jumlah_bintang" name="jumlah_bintang" min="1" max="100">
+
+      <!-- Pilihan Paket -->
+      <div id="paketSection" class="form-group hidden">
+        <label for="paket">Paket:</label>
+          <select id="paket" name="paket" size="1">
+          <option value="">-- Pilih Paket --</option>
+          <option value="1">Classic</option>
+              <option value="2">Mythtic Grading</option>
+              <option value="3">MRO</option>
+              <option value="4">Master</option>
+              <option value="5">Grandmaster</option>
+              <option value="6">Epic</option>
+              <option value="7">Legend</option>
+              <option value="8">Mythic Biasa</option>
+              <option value="9">Mythic Honor</option>
+              <option value="10">Mythic Glory</option>
+              <option value="11">Mythic Immortal</option>
+          </select>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="harga">Total Harga:</label>
-      <input type="text" id="harga" name="harga" readonly>
-    </div>
+      <div id="perStarSection" class="hidden">
+        <div class="form-group">
+          <label for="rank">Rank:</label>
+          <select id="rank" name="rank">
+            <option value="">-- Pilih Rank --</option>
+            <option value="master">Master</option>
+            <option value="grandmaster">Grandmaster</option>
+            <option value="epic">Epic</option>
+            <option value="legend">Legend</option>
+            <option value="mythic">Mythic</option>
+            <option value="mythic_honor">Mythic Honor</option>
+            <option value="glory">Glory</option>
+            <option value="immortal">Immortal</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="jumlah_bintang">Jumlah Bintang:</label>
+          <input type="number" id="jumlah_bintang" name="jumlah_bintang" min="1" max="100" placeholder="Masukkan jumlah bintang">
+        </div>
+      </div>
 
-    <div class="form-group">
-      <label for="no_wa">No WA:</label>
-      <input type="text" id="no_wa" name="no_wa" required>
-    </div>
+      <div class="form-group">
+        <label for="harga">Total Harga:</label>
+        <input type="text" id="harga" name="harga" value="..." readonly>
+      </div>
 
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-    </div>
+      <input type="hidden" id="total_harga" name="total_harga" readonly>
 
-    <div class="form-group">
-      <button type="submit">Kirim</button>
-    </div>
-  </form>
-  <a href="paket.html">
-    <button type="submit">Kembali ke Paket</button>
-  </a>
+      <div class="form-group">
+        <label for="no_wa">No WA:</label>
+        <input type="text" id="no_wa" name="no_wa" required placeholder="Contoh: 081234567890">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required placeholder="Contoh: email@example.com">
+      </div>
+
+      <div class="button-group">
+        <a href="paket.html" style="text-decoration: none;">
+          <button type="button">Kembali ke Paket</button>
+        </a>
+        <button type="submit">Kirim Formulir</button>
+      </div>
+    </form>
+  </div>
 
   <script>
   const jenisPembelian = document.getElementById('jenis_pembelian');
@@ -175,6 +255,7 @@
   const rank = document.getElementById('rank');
   const jumlahBintang = document.getElementById('jumlah_bintang');
   const hargaInput = document.getElementById('harga');
+  const totalHarga = document.getElementById('total_harga');
 
   jenisPembelian.addEventListener('change', function () {
     const value = this.value;
@@ -232,25 +313,26 @@
   };
 
   function updateHarga() {
-    const jenis = jenisPembelian.value;
+  const jenis = jenisPembelian.value;
 
-    let total = 0;
+  let total = 0;
 
-    if (jenis === "paket") {
-      const val = paket.value;
-      if (val && hargaPaket[val]) {
-        total = hargaPaket[val];
-      }
-    } else if (jenis === "per_star") {
-      const r = rank.value;
-      const b = parseInt(jumlahBintang.value);
-      if (r && b && hargaPerStar[r]) {
-        total = hargaPerStar[r] * b;
-      }
+  if (jenis === "paket") {
+    const val = paket.value;
+    if (val && hargaPaket[val]) {
+      total = hargaPaket[val];
     }
-
-    hargaInput.value = total.toLocaleString('id-ID'); // tampilkan format Rp
+  } else if (jenis === "per_star") {
+    const r = rank.value;
+    const b = parseInt(jumlahBintang.value);
+    if (r && b && hargaPerStar[r]) {
+      total = hargaPerStar[r] * b;
+    }
   }
+
+  hargaInput.value = "Rp " + total.toLocaleString('id-ID');
+  totalHarga.value = total;
+}
 
   jenisPembelian.addEventListener('change', updateHarga);
   paket.addEventListener('change', updateHarga);

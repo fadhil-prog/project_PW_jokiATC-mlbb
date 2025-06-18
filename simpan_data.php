@@ -1,9 +1,12 @@
 <?php
+// Mulai session untuk menyimpan data sementara
+session_start();
+
 // Koneksi ke database
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db = "joki_web"; // ganti sesuai nama database kamu
+$db = "joki_web";
 
 $conn = new mysqli($host, $user, $pass, $db);
 
@@ -13,29 +16,29 @@ if ($conn->connect_error) {
 }
 
 // Ambil data dari form
-$nama_pemesan   = $_POST['nama'];
-$id_mole        = $_POST['id_mole'];
-$nama_mole      = $_POST['nama_mole'];
-$jenis_pembelian= $_POST['jenis_pembelian'];
-$paket          = ($jenis_pembelian == "paket") ? $_POST['paket'] : "-";
-$rank           = ($jenis_pembelian == "per_star") ? $_POST['rank'] : "-";
-$bintang        = ($jenis_pembelian == "per_star") ? $_POST['jumlah_bintang'] : 0;
-$harga = isset($_POST['harga']) ? str_replace('.', '', $_POST['harga']) : 0;
-$no_wa          = $_POST['no_wa'];
-$email          = $_POST['email'];
+$nama_pemesan    = $_POST['nama'];
+$id_mole         = $_POST['id_mole'];
+$nama_mole       = $_POST['nama_mole'];
+$jenis_pembelian = $_POST['jenis_pembelian'];
+$paket           = ($jenis_pembelian == "paket") ? $_POST['paket'] : "-";
+$rank            = ($jenis_pembelian == "per_star") ? $_POST['rank'] : "-";
+$bintang         = ($jenis_pembelian == "per_star") ? intval($_POST['jumlah_bintang']) : 0;
+$harga = !empty($_POST['total_harga']) ? intval($_POST['total_harga']) : 0;
+$no_wa           = $_POST['no_wa'];
+$email           = $_POST['email'];
+
 
 // Simpan ke database
 $sql = "INSERT INTO pemesanan (nama_pemesan, id_mole, nama_mole, paketan, rank, bintang, harga, no_wa, email)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sssssssss", $nama_pemesan, $id_mole, $nama_mole, $paket, $rank, $bintang, $harga, $no_wa, $email);
+$stmt->bind_param("sssssiiss", $nama_pemesan, $id_mole, $nama_mole, $paket, $rank, $bintang, $harga, $no_wa, $email);
 
 if ($stmt->execute()) {
-    echo "<script>
-        alert('Data berhasil disimpan!');
-        window.location.href = 'paket.html'; 
-    </script>";
+    $last_id = $conn->insert_id;
+    header("Location: detail_pemesanan.php?id=" . $last_id);
+    exit();
 } else {
     echo "Gagal menyimpan data: " . $stmt->error;
 }
