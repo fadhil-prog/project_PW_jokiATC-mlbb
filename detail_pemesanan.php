@@ -74,8 +74,16 @@ $data = $result->fetch_assoc();
     </table>
 
     <div class="qris">
-      <img src="img/qris.jpg" alt="QRIS Pembayaran">
+      <img src="img/WhatsApp Image 2025-04-30 at 21.19.17.jpeg" alt="QRIS Pembayaran">
     </div>
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="https://api.whatsapp.com/send?phone=6282279923212&text=Halo%20saya%20sudah%20melakukan%20pemesanan%20joki%20MoLe" 
+        target="_blank" 
+        style="background-color: #25D366; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold;">
+        Chat via WhatsApp
+      </a>
+    </div>
+
   </div>
 </body>
 </html>
