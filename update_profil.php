@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo json_encode($response);
         exit();
     }
-
+ 
     // Periksa apakah username atau email sudah digunakan oleh pengguna lain (selain pengguna yang sedang login)
     $stmt_check = $conn->prepare("SELECT id FROM users WHERE (username = ? OR email = ?) AND id != ?");
     $stmt_check->bind_param("ssi", $username, $email, $user_id);
