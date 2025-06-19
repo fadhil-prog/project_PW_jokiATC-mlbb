@@ -181,17 +181,17 @@
         <label for="paket">Paket:</label>
           <select id="paket" name="paket" size="1">
           <option value="">-- Pilih Paket --</option>
-          <option value="1">Classic</option>
-              <option value="2">Mythtic Grading</option>
-              <option value="3">MRO</option>
-              <option value="4">Master</option>
-              <option value="5">Grandmaster</option>
-              <option value="6">Epic</option>
-              <option value="7">Legend</option>
-              <option value="8">Mythic Biasa</option>
-              <option value="9">Mythic Honor</option>
-              <option value="10">Mythic Glory</option>
-              <option value="11">Mythic Immortal</option>
+          <option value="Paket Classic">Classic</option>
+              <option value="1">Mythtic Grading</option>
+              <option value="2">MRO</option>
+              <option value="3">Master</option>
+              <option value="4">Grandmaster</option>
+              <option value="5">Epic</option>
+              <option value="6">Legend</option>
+              <option value="7">Mythic Biasa</option>
+              <option value="8">Mythic Honor</option>
+              <option value="9">Mythic Glory</option>
+              <option value="10">Mythic Immortal</option>
           </select>
       </div>
 
@@ -288,28 +288,28 @@
 
   const hargaPaket = {
     1: 10000,
-    2: 20000,
-    3: 30000,
-    4: 40000,
-    5: 50000,
-    6: 60000,
-    7: 70000,
-    8: 80000,
-    9: 90000,
+    2: 120000,
+    3: 200000,
+    4: 35000,
+    5: 35000,
+    6: 100000,
+    7: 100000,
+    8: 100000,
+    9: 100000,
     10: 100000,
-    11: 110000
+    11: 100000
   };
 
   // Harga per bintang per rank
   const hargaPerStar = {
-    master: 1000,
-    grandmaster: 2000,
-    epic: 3000,
-    legend: 4000,
-    mythic: 5000,
-    mythic_honor: 6000,
-    glory: 7000,
-    immortal: 8000
+    master: 4000,
+    grandmaster: 4000,
+    epic: 5000,
+    legend: 6000,
+    mythic: 12000,
+    mythic_honor: 14000,
+    glory: 18000,
+    immortal: 22000
   };
 
   function updateHarga() {

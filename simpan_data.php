@@ -1,5 +1,4 @@
 <?php
-// Mulai session untuk menyimpan data sementara
 session_start();
 
 // Koneksi ke database
@@ -20,7 +19,23 @@ $nama_pemesan    = $_POST['nama'];
 $id_mole         = $_POST['id_mole'];
 $nama_mole       = $_POST['nama_mole'];
 $jenis_pembelian = $_POST['jenis_pembelian'];
-$paket           = ($jenis_pembelian == "paket") ? $_POST['paket'] : "-";
+$daftar_paket = [
+    "1" => "Classic",
+    "2" => "Mythic Grading",
+    "3" => "MRO",
+    "4" => "10 Star Master",
+    "5" => "10 Star Grandmaster",
+    "6" => "22 Star Epic",
+    "7" => "18 Star Epic",
+    "8" => "9 Star Mythic Biasa",
+    "9" => "8 Star Mythic Honor",
+    "10" => "6 Star Mythic Glory",
+    "11" => "5 Star Mythic Immortal",
+];
+$paket = "-";
+if ($jenis_pembelian == "paket" && isset($_POST['paket']) && isset($daftar_paket[$_POST['paket']])) {
+    $paket = $daftar_paket[$_POST['paket']];
+}
 $rank            = ($jenis_pembelian == "per_star") ? $_POST['rank'] : "-";
 $bintang         = ($jenis_pembelian == "per_star") ? intval($_POST['jumlah_bintang']) : 0;
 $harga = !empty($_POST['total_harga']) ? intval($_POST['total_harga']) : 0;
