@@ -53,7 +53,7 @@ $stmt->bind_param("sssssiiss", $nama_pemesan, $id_mole, $nama_mole, $paket, $ran
 if ($stmt->execute()) {
     $last_id = $conn->insert_id;
     header("Location: detail_pemesanan.php?id=" . $last_id);
-    exit();
+    exit(); 
 } else {
     echo "Gagal menyimpan data: " . $stmt->error;
 }
