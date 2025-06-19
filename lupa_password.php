@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit;
             } else {
                 $error = "Gagal mengubah password.";
-            }
+            } 
         } else {
             $error = "Konfirmasi password tidak cocok.";
         }
