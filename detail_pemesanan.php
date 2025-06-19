@@ -2,7 +2,7 @@
 // Koneksi database
 $host = "localhost";
 $user = "root";
-$pass = "";
+$pass = ""; 
 $db = "joki_web";
 
 $conn = new mysqli($host, $user, $pass, $db);
