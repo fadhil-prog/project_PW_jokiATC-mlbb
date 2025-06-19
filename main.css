@@ -460,7 +460,7 @@ body {
   height: 750px;
   margin-top: 55px;
   background-image: url(./img/bg/pexels-photo-2098428.jpeg);
-  background-attachment: fixed;
+  background-attachment: fixed; 
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
