@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Koneksi ke database
 $host = "localhost";
 $user = "root";
 $pass = "";

@@ -1,8 +1,7 @@
 <?php
 session_start();
-include "koneksi.php"; // Pastikan file koneksi database
+include "koneksi.php"; 
 
-// Cek login
 if (!isset($_SESSION['user']['id'])) {
     header("Location: login.php");
     exit();
@@ -12,7 +11,6 @@ $user_id = $_SESSION['user']['id'];
 $query = mysqli_query($conn, "SELECT * FROM users WHERE id = '$user_id'");
 $data = mysqli_fetch_assoc($query);
 
-// Pastikan $data tidak null jika query gagal
 if (!$data) {
     session_destroy();
     header("Location: login.php");
@@ -250,34 +248,27 @@ if (!$data) {
     </section>
     <script>
         function toggleEdit() {
-            // Sembunyikan teks, tampilkan input
             document.querySelectorAll('.profile-input').forEach(el => el.style.display = 'block');
             document.querySelectorAll('span[id$="Text"]').forEach(el => el.style.display = 'none');
             
-            // Sembunyikan tombol "Edit Profil"
             document.getElementById('editBtn').classList.add('d-none');
             
-            // Tampilkan grup tombol "Simpan" dan "Batal"
-            document.getElementById('saveCancelGroup').classList.remove('d-none'); // Hapus d-none
-            document.getElementById('saveCancelGroup').classList.add('d-flex'); // Tambahkan d-flex
+            document.getElementById('saveCancelGroup').classList.remove('d-none'); 
+            document.getElementById('saveCancelGroup').classList.add('d-flex'); 
         }
 
         function cancelEdit() {
-            // Tampilkan teks, sembunyikan input
             document.querySelectorAll('.profile-input').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('span[id$="Text"]').forEach(el => el.style.display = 'inline'); // Atau 'block' tergantung styling Anda
+            document.querySelectorAll('span[id$="Text"]').forEach(el => el.style.display = 'inline'); 
             
-            // Reset nilai input ke nilai asli (dari PHP)
             document.getElementById('usernameInput').value = "<?= htmlspecialchars($data['username']) ?>";
             document.getElementById('emailInput').value = "<?= htmlspecialchars($data['email']) ?>";
-            document.getElementById('passwordInput').value = ""; // Kosongkan input password
+            document.getElementById('passwordInput').value = ""; 
             
-            // Tampilkan tombol "Edit Profil"
             document.getElementById('editBtn').classList.remove('d-none');
             
-            // Sembunyikan grup tombol "Simpan" dan "Batal"
-            document.getElementById('saveCancelGroup').classList.add('d-none'); // Tambahkan d-none
-            document.getElementById('saveCancelGroup').classList.remove('d-flex'); // Hapus d-flex
+            document.getElementById('saveCancelGroup').classList.add('d-none'); 
+            document.getElementById('saveCancelGroup').classList.remove('d-flex'); /
         }
 
         function saveProfile() {
@@ -294,13 +285,13 @@ if (!$data) {
                         const response = JSON.parse(xhr.responseText);
                         if (response.status === 'success') {
                             alert(response.message);
-                            location.reload(); // Muat ulang halaman untuk menampilkan data terbaru
+                            location.reload();
                         } else {
                             alert(response.message || "Gagal menyimpan perubahan.");
                         }
                     } catch (e) {
                         alert("Data berhasil disimpan.");
-                        location.reload(); // Mungkin juga muat ulang untuk berjaga-jaga
+                        location.reload(); 
                     }
                 } else {
                     alert("Terjadi kesalahan saat menghubungi server: " + xhr.status);

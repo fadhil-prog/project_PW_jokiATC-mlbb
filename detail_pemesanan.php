@@ -1,5 +1,4 @@
 <?php
-// Koneksi database
 $host = "localhost";
 $user = "root";
 $pass = ""; 
@@ -10,7 +9,7 @@ if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
-// Ambil data terakhir (misal yang paling baru)
+// Ambil data terakhir
 $result = $conn->query("SELECT * FROM pemesanan ORDER BY id_pemesan DESC LIMIT 1");
 
 $data = $result->fetch_assoc();
