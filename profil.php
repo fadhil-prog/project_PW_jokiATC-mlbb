@@ -83,7 +83,7 @@ if (!$data) {
         
         .btn {
             min-height: 45px;
-            font-weight: 400;
+            font-weight: 400; 
         }
         
         .btn-primary:hover {
