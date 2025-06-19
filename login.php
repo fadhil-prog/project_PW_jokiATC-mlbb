@@ -203,7 +203,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     .modal-content {
       background-color: #fff;
       padding: 30px;
-      border-radius: 15px;
+      border-radius: 15px; 
       text-align: center;
       width: 80%;
       max-width: 400px;
